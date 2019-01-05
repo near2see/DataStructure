@@ -10,6 +10,7 @@
 #include "sharedPointer.h"
 #include "smartPointer.h"
 #include "circleLinkList.h"
+#include "dualLinkList.h"
 #include <iostream>
 
 using namespace std;
@@ -32,24 +33,16 @@ void josephus(int n, int s, int m)
 }
 int main()
 {
-	josephus(41, 1, 3);
-#if 0
-	LinkList<int> ll;
-	for(int i=1; i<10; i++)
+	//josephus(41, 1, 3);
+	DualLinkList<int> dl;
+	for(int i=0; i<5; i++)
 	{
-		ll.insert(i);
+		dl.insert(i);
 	}
-	ll.move(0, 2);
-	ll.next();
-	cout << ll.current() << "\t";
-	ll.remove(ll.currentLocation());
-	ll.next();
-	cout << ll.current() << "\t";
-	ll.remove(ll.currentLocation());
-	for(int i=0; i<ll.length(); i++)
+
+	for(dl.move(4); !dl.isEnd(); dl.pre())
 	{
-		cout << ll.position(i)->value;
+		cout << dl.current();
 	}
-#endif
 
 }

@@ -11,12 +11,6 @@ class CircleLinkList : public LinkList<T>
 {
 typedef typename LinkList<T>::Node Node;
 protected:
-
-	void last_to_first()
-	{
-		last()->next = this->m_header.next;
-	}
-public:
 	Node* last() const
 	{
 		return this->at(this->length()-1);
@@ -25,6 +19,12 @@ public:
 	{
 		return (this->m_length == 0) ? 0 : i%(this->m_length + 1);
 	}
+	void last_to_first()
+	{
+		last()->next = this->m_header.next;
+	}
+public:
+
 	bool insert(const T& obj)
 	{
 		return insert(this->length(), obj);

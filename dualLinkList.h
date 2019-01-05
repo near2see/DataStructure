@@ -1,32 +1,35 @@
-#ifndef LINKLSIT_H
-#define LINKLSIT_H
+#ifndef DUALLINKLIST_H
+#define DUALLINKLIST_H
 #include "list.h"
-#include "exception.h"
-#include "sharedPointer.h"
 namespace dataStruct
 {
 
 template <typename T>
-class LinkList : public List<T>
+class DualLinkList : public List<T>
 {
 protected:
 	struct Node : public Object
 	{
 		T value;
 		Node* next;
+		Node* pre;
 	};
+
 	mutable struct : public Object
 	{
-		char reserved[sizeof(T)]; //避免构造时引入T带来的异常
+		char reserved[sizeof(T)];
 		Node* next;
+		Node* pre;
 	}m_header;
+
 	int m_length;
 	int m_step;
 	Node* m_iter;
 public:
-	LinkList()
+	DualLinkList()
 	{
 		m_header.next = nullptr;
+		m_header.pre = nullptr;
 		m_length = 0;
 		m_step = 1;
 		m_iter = nullptr;
@@ -65,6 +68,7 @@ public:
 			{
 				Node* current = at(i-1);
 				node->value = obj;
+				node->pre = current;
 				node->next = current->next;
 				current->next = node;
 				m_length++;
@@ -95,6 +99,10 @@ public:
 				m_iter = toDel->next;
 			}
 			current->next = toDel->next;
+			if(toDel->next != nullptr)
+			{
+				toDel->next->pre = current;
+			}
 			m_length--;
 			destory(toDel);
 		}
@@ -159,12 +167,9 @@ public:
 	}
 	void clear()
 	{
-		while(m_header.next)
+		while(m_length > 0)
 		{
-			Node* toDel = m_header.next;
-			m_header.next = toDel->next;
-			m_length--;
-			destory(toDel);
+			remove(0);
 		}
 	}
 
@@ -180,7 +185,7 @@ public:
 	}
 	bool isEnd()
 	{
-		return (m_iter == nullptr);
+		return (m_iter == nullptr || m_iter == reinterpret_cast<Node*>(&m_header));
 	}
 	T current()
 	{
@@ -203,14 +208,25 @@ public:
 		}
 		return (i==m_step);
 	}
-	~LinkList()
+	virtual bool pre()
+	{
+		int i=0;
+		while((i<m_step) && !isEnd())
+		{
+			m_iter = m_iter->pre;
+			i++;
+		}
+		return (i==m_step);
+	}
+	~DualLinkList()
 	{
 		clear();
 	}
+
 
 };
 
 
 }
 
-#endif // !LINKLSIT_H
+#endif // !DUALLINKLIST_H
