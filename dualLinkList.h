@@ -35,7 +35,7 @@ public:
 		m_iter = nullptr;
 	}
 
-	Node* at(int i) const
+	virtual Node* at(int i) const
 	{
 		Node* ret = reinterpret_cast<Node*>(&m_header);
 		if(((0 <= i) && (i < m_length)))
@@ -68,7 +68,7 @@ public:
 			{
 				Node* current = at(i-1);
 				node->value = obj;
-				node->pre = current;
+				node->pre = (current == reinterpret_cast<Node*>(&m_header)) ? nullptr : current;
 				node->next = current->next;
 				current->next = node;
 				m_length++;
@@ -185,7 +185,7 @@ public:
 	}
 	bool isEnd()
 	{
-		return (m_iter == nullptr || m_iter == reinterpret_cast<Node*>(&m_header));
+		return (m_iter == nullptr);
 	}
 	T current()
 	{

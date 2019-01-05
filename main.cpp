@@ -11,6 +11,7 @@
 #include "smartPointer.h"
 #include "circleLinkList.h"
 #include "dualLinkList.h"
+#include "dualCircleList.h"
 #include <iostream>
 
 using namespace std;
@@ -34,15 +35,16 @@ void josephus(int n, int s, int m)
 int main()
 {
 	//josephus(41, 1, 3);
-	DualLinkList<int> dl;
+	DualCircleList<int> dcl;
 	for(int i=0; i<5; i++)
 	{
-		dl.insert(i);
+		dcl.insert(i);
+	}
+	dcl.remove(0);
+	for(int i=0; i<dcl.length(); i++)
+	{
+		cout << dcl.at(i)->value << "\t";
 	}
 
-	for(dl.move(4); !dl.isEnd(); dl.pre())
-	{
-		cout << dl.current();
-	}
 
 }
