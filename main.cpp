@@ -12,39 +12,30 @@
 #include "circleLinkList.h"
 #include "dualLinkList.h"
 #include "dualCircleList.h"
+#include "staticStack.h"
+#include "linkStack.h"
 #include <iostream>
 
 using namespace std;
 using namespace dataStruct;
-void josephus(int n, int s, int m)
+class Test : public Object
 {
-	CircleLinkList<int> cl;
-	for(int i=1; i<=n; i++)
+public:
+	Test()
 	{
-		cl.insert(i);
+		cout << "Test()" << endl;
 	}
-	cl.move(s-1, m-1);
-	while(cl.length() > 0)
+	~Test() 
 	{
-		cl.next();
-		cout << cl.current() << "\t";
-		cl.remove(cl.find(cl.current()));
+		cout << "~Test()" << endl;
 	}
-	cout << endl << cl.length();
-}
+};
 int main()
 {
 	//josephus(41, 1, 3);
-	DualCircleList<int> dcl;
+	LinkStack<Test> st;
 	for(int i=0; i<5; i++)
 	{
-		dcl.insert(i);
+		st.push(Test());
 	}
-	dcl.remove(0);
-	for(int i=0; i<dcl.length(); i++)
-	{
-		cout << dcl.at(i)->value << "\t";
-	}
-
-
 }
