@@ -14,6 +14,8 @@
 #include "dualCircleList.h"
 #include "staticStack.h"
 #include "linkStack.h"
+#include "staticQueue.h"
+#include "linkQueue.h"
 #include <iostream>
 
 using namespace std;
@@ -33,9 +35,17 @@ public:
 int main()
 {
 	//josephus(41, 1, 3);
-	LinkStack<Test> st;
+	StaticQueue<int, 5> st;
+	LinkQueue<int> lq;
 	for(int i=0; i<5; i++)
 	{
-		st.push(Test());
+		st.add(i);
+		lq.add(i);
 	}
+	cout << lq.front();
+
+	lq.remove();
+	cout << lq.front();
+	lq.remove();
+	cout << lq.front();
 }
