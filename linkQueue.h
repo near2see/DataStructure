@@ -16,7 +16,6 @@ public:
 	{
 
 	}
-
 	void add(const T& obj)
 	{
 		m_list.insert(obj);

@@ -16,6 +16,7 @@
 #include "linkStack.h"
 #include "staticQueue.h"
 #include "linkQueue.h"
+#include "_string.h"
 #include <iostream>
 
 using namespace std;
@@ -34,18 +35,10 @@ public:
 };
 int main()
 {
-	//josephus(41, 1, 3);
-	StaticQueue<int, 5> st;
-	LinkQueue<int> lq;
-	for(int i=0; i<5; i++)
-	{
-		st.add(i);
-		lq.add(i);
-	}
-	cout << lq.front();
-
-	lq.remove();
-	cout << lq.front();
-	lq.remove();
-	cout << lq.front();
+	String st = "hello";
+	st += "world";
+	cout << ":" << st.str() << ":" << st.length();
+	cout << st.startWith("hello");
+	st.insert(4, "jjjjjjjjj");
+	cout << st.str();
 }
