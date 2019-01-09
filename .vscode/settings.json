@@ -39,7 +39,8 @@
 		"*.tcc": "cpp",
 		"iostream": "cpp",
 		"ostream": "cpp",
-		"cstddef": "cpp"
+		"cstddef": "cpp",
+		"string_view": "cpp"
 	},
 	"gnuGlobal.globalExecutable": "C:\\gtags\\bin\\global.exe",
 	"gnuGlobal.gtagsExecutable": "C:\\gtags\\bin\\gtags.exe"

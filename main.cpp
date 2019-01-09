@@ -17,6 +17,7 @@
 #include "staticQueue.h"
 #include "linkQueue.h"
 #include "_string.h"
+#include "pattern_match.h"
 #include <iostream>
 
 using namespace std;
@@ -35,10 +36,7 @@ public:
 };
 int main()
 {
-	String st = "hello";
-	st += "world";
-	cout << ":" << st.str() << ":" << st.length();
-	cout << st.startWith("hello");
-	st.insert(4, "jjjjjjjjj");
-	cout << st.str();
+	String s = "bbb";
+	cout << s.findAll("bb")[0];
+	return 0;
 }

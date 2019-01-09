@@ -52,7 +52,25 @@ public:
 	String& insert(int i, const char* s);
 	String& insert(int i, const String& s);
 
+	int indexOf(const char* s) const;
+	int indexOf(const String& s) const;
+	int indexOf(const char c) const;
+
+	int* findAll(const char* s) const;
+	int* findAll(const String& s) const;
+	int* findAll(const char c) const;
+
+	String& replace(const char* s, const char* d) ;
+	String& replace(const String& s, const char* d) ;
+	String& replace(const char c, const char* d) ;
+
+	String& remove(const char* s) ;
+	String& remove(const String& s) ;
+	String& remove(const char c) ;
+
 	String& trim();
+
+	String sub(int i, int len) const;
 	~String();
 };
 
